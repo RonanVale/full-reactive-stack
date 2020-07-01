@@ -13,7 +13,6 @@ set verbs[6]=create
 set verbs[7]=implement
 set verbs[8]=cleanup
 set verbs[9]=improve
-
 set words[10]=river
 set words[11]=ember
 set words[12]=vortex
@@ -55,6 +54,8 @@ set words[47]=comet
 set words[48]=shard
 set words[49]=aurorae
 
+:: verbs for realistic commit messages
+
 set year=2020
 set month=6
 set day=13
@@ -67,18 +68,12 @@ for /L %%i in (1,1,130) do (
     call set verb=%%verbs[!v!]%%
 
     if %%i==130 (
-        set msg=final commit
+        set msg= final commit
     ) else (
         set msg=!verb! !word!
     )
 
-    :: Random date between 2020-06-13 and 2020-07-30
-    :: June 13-30 = 18 days
-    :: July 1-30 = 30 days
-    :: Total = 48 days (offsets 0-47)
-
     set /a offset=!random! %% 48
-
     if !offset! LSS 18 (
         set month=6
         set /a day=13 + offset
@@ -108,3 +103,4 @@ for /L %%i in (1,1,130) do (
 
     echo %%i / 130 - !msg! - !commitdate!
 )
+```
